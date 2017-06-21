@@ -1,0 +1,10 @@
+{ 
+  "Campaign": {
+    "API": {
+      "url": "https://api.createsend.com/api/v3.1"
+    }    
+  },
+  "Server": {
+    "port": 8080
+  }
+}
