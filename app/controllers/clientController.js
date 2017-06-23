@@ -1,14 +1,11 @@
 import request from 'request-promise';
 import config from 'config';
 
-class CampaignController {
-  constructor() {
-    this.CAMPAIGN_API_URL = config.get('Campaign.API.url');
-  }
+export default class ClientController {
 
-  getClients(req, res) {
+  static getClients(req, res) {
     let options = {
-      uri: `${this.CAMPAIGN_API_URL}/clients.json`,
+      uri: `${config.get('Campaign.API.url')}/clients.json`,
       method: 'GET', 
       headers: {
         'Authorization': req.headers.authorization
@@ -24,9 +21,9 @@ class CampaignController {
       });
   }
 
-  getClientById(req, res) {
+  static getClientById(req, res) {
     let options = {
-      uri: `${this.CAMPAIGN_API_URL}/clients/${req.params.id}.json`,
+      uri: `${config.get('Campaign.API.url')}/clients/${req.params.clientId}.json`,
       headers: {
         'Authorization': req.headers.authorization
       },
@@ -41,9 +38,9 @@ class CampaignController {
       });
   }
 
-  createClient(req, res) {
+  static createClient(req, res) {
     let options = {
-      uri: `${this.CAMPAIGN_API_URL}/clients.json`,
+      uri: `${config.get('Campaign.API.url')}/clients.json`,
       method: 'POST', 
       headers: {
         'Authorization': req.headers.authorization
@@ -60,9 +57,9 @@ class CampaignController {
       });
   }
 
-  deleteClient(req, res) {
+  static deleteClient(req, res) {
     let options = {
-      uri: `${this.CAMPAIGN_API_URL}/clients/${req.params.id}.json`,
+      uri: `${config.get('Campaign.API.url')}/clients/${req.params.clientId}.json`,
       method: 'DELETE', 
       headers: {
         'Authorization': req.headers.authorization
@@ -78,9 +75,9 @@ class CampaignController {
       });
   }
 
-  getList(req, res) {
+  static getList(req, res) {
     let options = {
-      uri: `${this.CAMPAIGN_API_URL}/clients/${req.params.id}/lists.json`,
+      uri: `${config.get('Campaign.API.url')}/clients/${req.params.clientId}/lists.json`,
       method: 'GET',
       headers: {
         'Authorization': req.headers.authorization
@@ -96,5 +93,3 @@ class CampaignController {
       });
   }
 }
-
-module.exports = CampaignController;
