@@ -6,7 +6,7 @@ export default class ClientController {
 
   static getClients(req, res) {
     let options = {
-      uri: `${config.get('Campaign.API.url')}/clients.json`,
+      uri: `${config.get('campaign.api.url')}/clients.json`,
       method: 'GET', 
       headers: {
         'Authorization': `Basic ${req.headers.authorization}`
@@ -24,7 +24,7 @@ export default class ClientController {
 
   static getClientById(req, res) {
     let options = {
-      uri: `${config.get('Campaign.API.url')}/clients/${req.params.clientId}.json`,
+      uri: `${config.get('campaign.api.url')}/clients/${req.params.clientId}.json`,
       headers: {
         'Authorization': `Basic ${req.headers.authorization}`
       },
@@ -41,7 +41,7 @@ export default class ClientController {
 
   static createClient(req, res) {
     let options = {
-      uri: `${config.get('Campaign.API.url')}/clients.json`,
+      uri: `${config.get('campaign.api.url')}/clients.json`,
       method: 'POST', 
       headers: {
         'Authorization': `Basic ${req.headers.authorization}`
@@ -60,7 +60,7 @@ export default class ClientController {
 
   static deleteClient(req, res) {
     let options = {
-      uri: `${config.get('Campaign.API.url')}/clients/${req.params.clientId}.json`,
+      uri: `${config.get('campaign.api.url')}/clients/${req.params.clientId}.json`,
       method: 'DELETE', 
       headers: {
         'Authorization': `Basic ${req.headers.authorization}`
@@ -78,7 +78,7 @@ export default class ClientController {
 
   static getList(req, res) {
     let options = {
-      uri: `${config.get('Campaign.API.url')}/clients/${req.params.clientId}/lists.json`,
+      uri: `${config.get('campaign.api.url')}/clients/${req.params.clientId}/lists.json`,
       method: 'GET',
       headers: {
         'Authorization': `Basic ${req.headers.authorization}`
