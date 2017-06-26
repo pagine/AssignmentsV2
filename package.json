@@ -15,9 +15,11 @@
   ],
   "author": "Pawan Agine",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "config": "^1.26.1",
     "express": "^4.15.3",
+    "mongoose": "^4.11.0",
     "request": "^2.81.0",
     "request-promise": "^4.2.1"
   },

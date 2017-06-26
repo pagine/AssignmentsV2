@@ -1,5 +1,6 @@
 import request from 'request-promise';
 import config from 'config';
+import User from '../models/client';
 
 export default class ClientController {
 
@@ -8,7 +9,7 @@ export default class ClientController {
       uri: `${config.get('Campaign.API.url')}/clients.json`,
       method: 'GET', 
       headers: {
-        'Authorization': req.headers.authorization
+        'Authorization': `Basic ${req.headers.authorization}`
       },
       json: true
     };
@@ -25,7 +26,7 @@ export default class ClientController {
     let options = {
       uri: `${config.get('Campaign.API.url')}/clients/${req.params.clientId}.json`,
       headers: {
-        'Authorization': req.headers.authorization
+        'Authorization': `Basic ${req.headers.authorization}`
       },
       json: true
     };
@@ -43,7 +44,7 @@ export default class ClientController {
       uri: `${config.get('Campaign.API.url')}/clients.json`,
       method: 'POST', 
       headers: {
-        'Authorization': req.headers.authorization
+        'Authorization': `Basic ${req.headers.authorization}`
       },
       body: req.body,
       json: true
@@ -62,7 +63,7 @@ export default class ClientController {
       uri: `${config.get('Campaign.API.url')}/clients/${req.params.clientId}.json`,
       method: 'DELETE', 
       headers: {
-        'Authorization': req.headers.authorization
+        'Authorization': `Basic ${req.headers.authorization}`
       },
       json: true
     };
@@ -80,7 +81,7 @@ export default class ClientController {
       uri: `${config.get('Campaign.API.url')}/clients/${req.params.clientId}/lists.json`,
       method: 'GET',
       headers: {
-        'Authorization': req.headers.authorization
+        'Authorization': `Basic ${req.headers.authorization}`
       },
       json: true
     };
@@ -90,6 +91,33 @@ export default class ClientController {
       })
      .catch((err) => {
         res.status(500).send(err);
+      });
+  }
+
+  static userLogin(req, res) {
+    let authHeader = req.headers.authorization.split(' ').pop();
+    if(authHeader) {
+      let decodedAuth = Buffer.from(authHeader, 'base64').toString();
+      let [username, password] = decodedAuth.split(':');
+      User.getClient(username, password)
+       .then((user) => {
+          res.send({'access_token':user.token});
+        })
+       .catch((error) => {
+          res.status(401).send({'error':'Unauthorized'});
+        });
+    } else {
+      res.status(401).send({'error':'Unauthorized'});
+    }
+  }
+
+  static validateToken(req, res, next) {
+    User.validateToken(req.headers.authorization)
+     .then((user) => {
+        next();
+      })
+     .catch((err) => {
+        res.status(401).send({'error':'Unauthorized'});
       });
   }
 }
