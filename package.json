@@ -7,7 +7,8 @@
     "start": "sudo forever start server.js",
     "stop": "sudo forever stop server.js",
     "restart": "sudo forever restart server.js",
-    "preinstall": "sudo npm install -g forever"
+    "preinstall": "sudo npm install -g forever",
+    "test": "mocha --compilers js:babel-core/register"
   },
   "keywords": [
     "campaigns",
@@ -26,6 +27,9 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
-    "babel-register": "^6.24.1"
+    "babel-register": "^6.24.1",
+    "chai": "^4.0.2",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.4.2"
   }
 }
