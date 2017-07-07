@@ -1,0 +1,35 @@
+{
+  "name": "CampaignMonitorAPIs",
+  "version": "1.0.0",
+  "description": "This is practice assignment using campaign use case",
+  "main": "server.js",
+  "scripts": {
+    "start": "sudo forever start server.js",
+    "stop": "sudo forever stop server.js",
+    "restart": "sudo forever restart server.js",
+    "preinstall": "sudo npm install -g forever",
+    "test": "mocha --compilers js:babel-core/register"
+  },
+  "keywords": [
+    "campaigns",
+    "express"
+  ],
+  "author": "Pawan Agine",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "config": "^1.26.1",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^4.0.2",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.4.2"
+  }
+}

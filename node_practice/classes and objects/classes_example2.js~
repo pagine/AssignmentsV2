@@ -1,0 +1,22 @@
+class Shape {
+    constructor (id, x, y) {
+        this.id = id
+        this.move(x, y)
+    }
+    move (x, y) {
+        this.x = x
+        this.y = y
+    }
+    
+set id (v) {
+this.id=v;
+}
+get id (){
+return this.id;
+}
+}
+
+
+var shape = new Shape(1,2,3);
+shape.id=100; 
+console.log(shape.id);

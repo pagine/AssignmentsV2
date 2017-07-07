@@ -1,0 +1,8 @@
+git checkout -b <new-branch-name>
+
+git commit all files
+
+git push <remote-name> <new-branch-name>
+
+git pull new branch
+

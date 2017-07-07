@@ -25,8 +25,8 @@ describe('Login', () => {
 
 function runClientTestSuite(access_token) {
   describe('Clients', () => {
-    describe('Get all clients', () => {      
-      it('should get all the clients', (done) => {        
+    describe('Get all clients', () => {
+      it('should get all the clients', (done) => {
         chai.request('http://localhost:8080')
          .get('/clients')
          .set('Authorization', access_token)
@@ -77,7 +77,7 @@ function runClientTestSuite(access_token) {
         chai.request('http://localhost:8080')
          .delete('/clients/612c85ab7c43b602821a0877dbada358')
          .set('Authorization', access_token)
-         .end((err, res, body) => {            
+         .end((err, res, body) => {
             res.should.have.status(200);
             done();
           });
