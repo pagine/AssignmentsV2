@@ -9,9 +9,7 @@ export default class TodoListApp extends React.Component {
          list: [],
          inputText: ''
        };
-       this.config = {
-         url: 'http://localhost:3000'
-       };
+
        this.handleChange = this.handleChange.bind(this);
        this.addTask = this.addTask.bind(this);
        this.removeTask = this.removeTask.bind(this);
@@ -24,7 +22,7 @@ export default class TodoListApp extends React.Component {
    }
 
    getTasks() {
-        axios.get(this.config.url + '/tasks')
+        axios.get('http://localhost:3000/tasks')
         .then((response) => {
             this.setState({
                 list: response.data.list
@@ -39,13 +37,13 @@ export default class TodoListApp extends React.Component {
      this.setState({inputText: e.target.value.trim()});
    }
 
-   addTask(e) {         
+   addTask(e) {     
      let input = this.state.inputText;  
      if(e.keyCode == 13 && this.state.list.filter(function(x) { return x.text === input }).length === 0) {
        const obj = {
          text: input,
        }
-       axios.post(this.config.url + '/tasks', obj)
+       axios.post('http://localhost:3000/tasks', obj)
        .then((response) => {
             this.getTasks();
        })
@@ -56,7 +54,7 @@ export default class TodoListApp extends React.Component {
    }
 
    removeTask(task) {
-     axios.delete(this.config.url + '/tasks/'+task.id)
+     axios.delete('http://localhost:3000/tasks/'+task.id)
      .then((response) => {
           this.getTasks();
      })
@@ -69,7 +67,7 @@ export default class TodoListApp extends React.Component {
       const obj = {
         status: task.status === 'completed'?'pending':'completed',
       }
-      axios.put(this.config.url + '/tasks/'+task.id, obj)
+      axios.put('http://localhost:3000/tasks/'+task.id, obj)
       .then((response) => {
            this.getTasks();
       })
@@ -78,7 +76,7 @@ export default class TodoListApp extends React.Component {
       });
    }
 
-   render() {      
+   render() {
       return (
          <div>
             <h2 style = {{marginLeft: '40px'}}>Todo List App</h2>
@@ -87,7 +85,7 @@ export default class TodoListApp extends React.Component {
             </div>
             <div>
                 <ul id="myUL">
-                    {this.state.list.map((item, i) => <ListItem data = {item} key = {i} removeTask = {this.removeTask} changeStatus = {this.changeStatus} />)}
+                    {this.state.list.map((item, i) => <ListItem data = {item} key = {i} id = {i} removeTask = {this.removeTask} changeStatus = {this.changeStatus} />)}
                 </ul>
             </div>
          </div>
