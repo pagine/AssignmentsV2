@@ -1,0 +1,17 @@
+{ 
+  "campaign": {
+    "api": {
+      "url": "https://api.createsend.com/api/v3.1"
+    }    
+  },
+  "server": {
+    "port": 8080
+  },
+  "mongodb": {
+    "host": "localhost",
+    "port": 27017,
+    "user": "root",
+    "password": "u8untu",
+    "db": "campaign_monitor"
+  }
+}
